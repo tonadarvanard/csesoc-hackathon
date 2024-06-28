@@ -1,10 +1,6 @@
 import { db } from "../../lib/db";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { hash } from "bcrypt";
-
-export async function GET() {
-  return NextResponse.json({ success: true });
-}
 
 export async function POST(req: Request) {
   try {
@@ -23,16 +19,14 @@ export async function POST(req: Request) {
         email: email,
         name: name,
         password: hashedPassword,
+        progressIds: []
       },
     });
 
-    const { password: newUserPassword, ...rest } = newUser
-    
+    const { password: newUserPassword, ...rest } = newUser;
+
     return NextResponse.json({ user: rest }, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { error: error },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: error }, { status: 400 });
   }
 }
