@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import validator from "validator";
+import Link from "next/link";
 
 export default function SignUpForm() {
   const [name, setName] = useState("");
@@ -83,6 +84,9 @@ export default function SignUpForm() {
         <button type="submit" className="bg-white">
           Sign Up!
         </button>
+        <Link href="/signin" className="bg-white text-center">
+          Already have account? Sign in!
+        </Link>
       </form>
     </div>
   );

@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { sign } from "crypto";
+import Link from "next/link";
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
@@ -34,12 +34,14 @@ export default function SignInForm() {
         router.push("/dashboard");
       }
     } catch (error) {
-      console.log(error);
+      console.log(`Error: ${error}`);
     }
   };
 
   return (
-    <div className={"flex items-center justify-center h-screen w-screen"}>
+    <div
+      className={"flex flex-col items-center justify-center h-screen w-screen"}
+    >
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 text-black">
         <input
           name="email"
@@ -56,6 +58,9 @@ export default function SignInForm() {
         <button type="submit" className="bg-white">
           Sign In!
         </button>
+        <Link href="/signup" className="bg-white text-center">
+          Sign up instead?
+        </Link>
       </form>
     </div>
   );
