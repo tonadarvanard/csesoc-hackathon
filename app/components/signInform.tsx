@@ -61,7 +61,10 @@ export default function SignInForm() {
           onChange={handleChangePassword}
           className="rounded p-2 bg-[#FEF7FF]"
         />
-        <button type="submit" className="bg-white rounded p-1">
+        <button
+          type="submit"
+          className="bg-white rounded p-1 transition duration-300 transform hover:bg-[#B2B2B2] "
+        >
           Sign In
         </button>
         <p className="text-white text-center">or</p>

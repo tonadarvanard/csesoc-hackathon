@@ -128,7 +128,10 @@ export default function ProgressCreateForm({
           onChange={handleChangeRPE}
           className="rounded p-2 bg-[#FEF7FF]"
         />
-        <button type="submit" className="rounded p-2 bg-white">
+        <button
+          type="submit"
+          className="rounded p-2 bg-white transition duration-300 transform hover:bg-[#B2B2B2] "
+        >
           Submit Progress!
         </button>
       </form>

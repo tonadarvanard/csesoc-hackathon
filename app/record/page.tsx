@@ -40,7 +40,7 @@ const Page = async () => {
           {exercises.map((exercise, i) => (
             <Link
               key={i}
-              className="relative border flex flex-col gap-1 p-4 bg-[#D9D9D9] text-black rounded p-6"
+              className="relative border flex flex-col gap-1 p-4 bg-[#D9D9D9] text-black rounded p-6 transition duration-300 transform hover:-translate-y-1"
               href={`/record/${exercise.toLowerCase().replace(/ /g, "")}`}
             >
               {exercise}
@@ -50,7 +50,7 @@ const Page = async () => {
 
         <Link
           href="/dashboard"
-          className="text-lg bg-white rounded p-2 text-black"
+          className="text-lg bg-white rounded p-2 text-black transition duration-300 transform hover:bg-[#B2B2B2]"
         >
           Back
         </Link>

@@ -66,7 +66,10 @@ const Page = async () => {
           ))}
         </div>
 
-        <Link href="/record" className="bg-white rounded p-2 text-black">
+        <Link
+          href="/record"
+          className="bg-white rounded p-2 text-black transition duration-300 transform hover:bg-[#B2B2B2] "
+        >
           Analyze My Form!
         </Link>
 

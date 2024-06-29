@@ -95,7 +95,7 @@ export default function Record() {
       ></video>
       <button
         onClick={handleStartStopClick}
-        className="bg-white rounded p-2 text-black"
+        className="bg-white rounded p-2 text-black transition duration-300 transform hover:bg-[#B2B2B2] "
       >
         {isRecording ? "Stop Recording" : "Start Recording"}
       </button>
