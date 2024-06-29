@@ -6,15 +6,29 @@ import { useRouter } from "next/navigation";
 export default function ProgressCreateForm({
   formMatchPercent,
   userId,
+  type,
 }: {
   formMatchPercent: number;
   userId: number;
+  type: string;
 }) {
+  const [exerciseName, setExerciseName] = useState(
+    type.charAt(0).toUpperCase() + type.slice(1)
+  );
+  const [weight, setWeight] = useState(0);
   const [reps, setReps] = useState(0);
   const [sets, setSets] = useState(0);
   const [rpe, setRpe] = useState<number | null>(null);
 
   const router = useRouter();
+
+  const handleChangeExerciseName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setExerciseName(e.target.value);
+  };
+
+  const handleChangeWeight = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWeight(parseInt(e.target.value));
+  };
 
   const handleChangeReps = (e: React.ChangeEvent<HTMLInputElement>) => {
     setReps(parseInt(e.target.value));
@@ -30,6 +44,11 @@ export default function ProgressCreateForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (exerciseName.length < 1) {
+      console.log("Exercise name can't be empty!");
+      return;
+    }
 
     if (reps < 1) {
       console.log("Reps must be more than 0");
@@ -47,7 +66,9 @@ export default function ProgressCreateForm({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        exerciseName,
         formMatchPercent,
+        weight,
         reps,
         sets,
         rpe: rpe || null,
@@ -63,31 +84,52 @@ export default function ProgressCreateForm({
   };
 
   return (
-    <div className={"flex items-center justify-center h-screen w-screen"}>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2 text-black">
-        <div className="bg-white text-black">{formMatchPercent}</div>
+    <div className={"flex items-center justify-center"}>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3 text-black">
+        <div className="rounded p-2 bg-[#FEF7FF]">{formMatchPercent}</div>
+        <input
+          name="exerciseName"
+          type="text"
+          placeholder="Exercise name"
+          value={exerciseName}
+          onChange={handleChangeExerciseName}
+          className="rounded p-2 bg-[#FEF7FF]"
+        />
+        <input
+          name="weight"
+          type="number"
+          placeholder="Weight (kg)"
+          min={0}
+          onChange={handleChangeWeight}
+          className="rounded p-2 bg-[#FEF7FF]"
+        />
         <input
           name="reps"
           type="number"
           placeholder="Reps"
-          value={reps}
+          min={1}
           onChange={handleChangeReps}
+          className="rounded p-2 bg-[#FEF7FF]"
         />
         <input
           name="sets"
           type="number"
           placeholder="Sets"
-          value={sets}
+          min={1}
           onChange={handleChangeSets}
+          className="rounded p-2 bg-[#FEF7FF]"
         />
         <input
           name="rpe"
           type="number"
           placeholder="RPE"
+          min={1}
+          max={10}
           onChange={handleChangeRPE}
+          className="rounded p-2 bg-[#FEF7FF]"
         />
-        <button type="submit" className="bg-white">
-          Submit!
+        <button type="submit" className="rounded p-2 bg-white">
+          Submit Progress!
         </button>
       </form>
     </div>

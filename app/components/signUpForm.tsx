@@ -2,7 +2,10 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import validator from "validator";
+import { Inter } from "next/font/google";
 import Link from "next/link";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function SignUpForm() {
   const [name, setName] = useState("");
@@ -61,31 +64,38 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className={"flex items-center justify-center h-screen w-screen"}>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2 text-black">
+    <div
+      className={`flex items-center justify-center h-screen w-screen ${inter.className} bg-[#1E1E1E]`}
+    >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3 text-black">
+        <p className={"text-left text-white text-3xl"}>Sign Up</p>
         <input
           name="name"
           type="text"
           placeholder="Display name"
           onChange={handleChangeName}
+          className="rounded p-2 bg-[#FEF7FF]"
         />
         <input
           name="email"
           type="text"
           placeholder="Email"
           onChange={handleChangeEmail}
+          className="rounded p-2 bg-[#FEF7FF]"
         />
         <input
           name="password"
           type="text"
           placeholder="Password"
           onChange={handleChangePassword}
+          className="rounded p-2 bg-[#FEF7FF]"
         />
-        <button type="submit" className="bg-white">
-          Sign Up!
+        <button type="submit" className="bg-white rounded p-1">
+          Sign Up
         </button>
-        <Link href="/signin" className="bg-white text-center">
-          Already have account? Sign in!
+        <p className="text-white text-center">or</p>
+        <Link href="/signin" className="text-white underline text-center">
+          Sign In
         </Link>
       </form>
     </div>

@@ -33,8 +33,8 @@ export default function Record() {
 
     recorder.onstop = () => {
       const blob = new Blob(recordedChunks, { type: "video/webm" });
-      //sendVideo(blob);
-      const url = URL.createObjectURL(blob);
+      sendVideo(blob);
+      //const url = URL.createObjectURL(blob);
 
       // const a = document.createElement("a");
       // a.style.display = "none";
@@ -58,8 +58,8 @@ export default function Record() {
 
   const sendVideo = async (videoBlob: Blob) => {
     try {
-      // const formData = new FormData();
-      // formData.append("video", videoBlob, "recorded-video.webm");
+      const formData = new FormData();
+      formData.append("video", videoBlob, "recorded-video.webm");
       // const response = await fetch("/api/upload_video", {
       //   method: "POST",
       //   body: formData,
@@ -86,9 +86,17 @@ export default function Record() {
   };
 
   return (
-    <div>
-      <video ref={videoRef} width="640" height="480"></video>
-      <button onClick={handleStartStopClick}>
+    <div className="flex flex-col items-center gap-4">
+      <video
+        ref={videoRef}
+        width="640"
+        height="480"
+        className="bg-[#D9D9D9] border-2 border-colour-[#D9D9D9] drop-shadow-lg"
+      ></video>
+      <button
+        onClick={handleStartStopClick}
+        className="bg-white rounded p-2 text-black"
+      >
         {isRecording ? "Stop Recording" : "Start Recording"}
       </button>
     </div>

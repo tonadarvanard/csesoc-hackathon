@@ -5,6 +5,9 @@ import SignOutButton from "../components/signOutButton";
 import Link from "next/link";
 import DeleteProgressButton from "../components/deleteProgressButton";
 import { redirect } from "next/navigation";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 const Page = async () => {
   const session = await getServerSession(authOptions);
@@ -26,40 +29,44 @@ const Page = async () => {
   });
   progs = progs.reverse();
 
-  const options = {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-  };
-
   return (
-    <div>
-      <div className="flex flex-col gap-10 items-center">
-        <div className="flex flex-col items-center">
-          <h1>{user.name}</h1>
-          <div>{user.email}</div>
+    <div className={`${inter.className} bg-[#1E1E1E] w-screen h-screen`}>
+      <div className={`flex flex-col gap-5 items-center`}>
+        <div
+          className={`w-full flex flex-col items-left bg-[#474053] drop-shadow-lg text-2xl p-4 gap-1`}
+        >
+          <p className="text-3xl">Hello,</p>
+          <p>{user.name}</p>
+          <p className="text-base">{user.email}</p>
         </div>
 
-        {progs.length === 0 && <div>No Progress Recorded!</div>}
+        <div className="text-4xl">Your Fitness Progress</div>
 
-        <div className="flex flex-col gap-4">
+        {progs.length === 0 && (
+          <div className="text-xl">No Progress Recorded!</div>
+        )}
+
+        <div className="flex flex-col gap-4 text-lg w-[500px]">
           {progs.map((prog, i) => (
-            <div key={i} className="border p-4">
+            <div
+              key={i}
+              className="relative border flex flex-col gap-1 p-4 bg-[#D9D9D9] text-black rounded p-6"
+            >
               <DeleteProgressButton id={prog.id} />
-              <p>{`${prog.timestamp.toLocaleDateString(
-                "en-GB"
-              )}, ${prog.timestamp.getHours()}:${prog.timestamp.getHours()}`}</p>
+              <p>{`Time: ${prog.timestamp
+                .toLocaleString()
+                .replace(/,/g, " -")}`}</p>
+              <p>{`Exercise: ${prog.exerciseName}`}</p>
               <p>{`Form Match: ${prog.formMatchPercent}%`}</p>
+              <p>{`Weight: ${prog.weight}kg`}</p>
               <p>{`Reps: ${prog.reps}`}</p>
               <p>{`Sets: ${prog.sets}`}</p>
-              <p>{`RPE: ${prog.rpe ?? "No rpe"}`}</p>
+              <p>{`RPE: ${prog.rpe ?? "-"}`}</p>
             </div>
           ))}
         </div>
 
-        <Link href="/record" className="bg-white text-black p-2">
+        <Link href="/record" className="bg-white rounded p-2 text-black">
           Analyze My Form!
         </Link>
 

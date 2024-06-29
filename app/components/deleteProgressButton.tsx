@@ -1,5 +1,4 @@
 "use client";
-import { db } from "../lib/db";
 
 export default function DeleteProgressButton({ id }: { id: number }) {
   const handleDelete = async () => {
@@ -16,7 +15,10 @@ export default function DeleteProgressButton({ id }: { id: number }) {
   };
 
   return (
-    <button className="bg-white text-black" onClick={handleDelete}>
+    <button
+      className="rounded p-2 bg-white text-white absolute top-0 right-0 bg-[#B44C4E] "
+      onClick={handleDelete}
+    >
       Delete
     </button>
   );

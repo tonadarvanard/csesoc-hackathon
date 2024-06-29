@@ -1,15 +1,17 @@
-import { stat } from "fs";
 import { db } from "../../lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { formMatchPercent, reps, sets, rpe, userId } = body;
+    const { exerciseName, formMatchPercent, weight, reps, sets, rpe, userId } =
+      body;
 
     const newProgress = await db.progress.create({
       data: {
+        exerciseName,
         formMatchPercent,
+        weight,
         reps,
         sets,
         rpe: rpe || undefined,
@@ -33,5 +35,3 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: error }, { status: 400 });
   }
 }
-
-
