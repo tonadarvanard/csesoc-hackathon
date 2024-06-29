@@ -6,14 +6,22 @@ import { compare } from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
+  },
+  pages: {
+    signIn: "/signin",
   },
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "bob@gmail.com" },
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "bob123@gmail.com",
+        },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
@@ -43,4 +51,5 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  
 };
