@@ -10,9 +10,6 @@ const Page = async () => {
     return (
       <div>
         <h1>Please log in!</h1>
-        <Link href="/signin" className="bg-white text-black">
-          Sign In!
-        </Link>
       </div>
     );
   }
