@@ -60,9 +60,6 @@ export default function Record() {
         height="480"
         style={{ display: "none" }}
       ></canvas>
-      <Link href="/progress/create" className="bg-white text-black">
-        Done!
-      </Link>
     </div>
   );
 }

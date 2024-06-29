@@ -26,27 +26,35 @@ const Page = async () => {
   });
   progs = progs.reverse();
 
+  const options = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+
   return (
     <div>
       <div className="flex flex-col gap-10 items-center">
-        <div className="flex flex-col">
-          <div>Name: {user.id}</div>
-          <div>Name: {user.name}</div>
-          <div>Email: {user.email}</div>
+        <div className="flex flex-col items-center">
+          <h1>{user.name}</h1>
+          <div>{user.email}</div>
         </div>
 
         {progs.length === 0 && <div>No Progress Recorded!</div>}
 
         <div className="flex flex-col gap-4">
           {progs.map((prog, i) => (
-            <div key={i} className="border">
+            <div key={i} className="border p-4">
               <DeleteProgressButton id={prog.id} />
-              <p>{prog.id}</p>
-              <p>{`${prog.timestamp}`}</p>
-              <p>{prog.formMatchPercent}</p>
-              <p>{prog.reps}</p>
-              <p>{prog.sets}</p>
-              <p>{prog.rpe ?? "No rpe"}</p>
+              <p>{`${prog.timestamp.toLocaleDateString(
+                "en-GB"
+              )}, ${prog.timestamp.getHours()}:${prog.timestamp.getHours()}`}</p>
+              <p>{`Form Match: ${prog.formMatchPercent}%`}</p>
+              <p>{`Reps: ${prog.reps}`}</p>
+              <p>{`Sets: ${prog.sets}`}</p>
+              <p>{`RPE: ${prog.rpe ?? "No rpe"}`}</p>
             </div>
           ))}
         </div>
