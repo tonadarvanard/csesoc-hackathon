@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: { type: string } }) {
 
   const { type } = params;
 
-  const formMatchPercent = 50.12;
+  const formMatchPercent = 60.23;
 
   return (
     <div

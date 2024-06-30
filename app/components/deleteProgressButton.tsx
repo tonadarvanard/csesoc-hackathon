@@ -16,7 +16,7 @@ export default function DeleteProgressButton({ id }: { id: number }) {
 
   return (
     <button
-      className="rounded p-2 bg-white text-white absolute top-0 right-0 bg-[#B44C4E] transition duration-300 transform hover:bg-[#E46669] "
+      className="rounded p-2 bg-white text-white absolute top-0 right-0 bg-[#B44C4F] transition duration-300 transform hover:bg-[#E46669] "
       onClick={handleDelete}
     >
       Delete

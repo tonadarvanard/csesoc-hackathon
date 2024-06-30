@@ -56,7 +56,7 @@ export default function SignInForm() {
         />
         <input
           name="password"
-          type="text"
+          type="password"
           placeholder="Password"
           onChange={handleChangePassword}
           className="rounded p-2 bg-[#FEF7FF]"

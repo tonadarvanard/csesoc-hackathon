@@ -86,7 +86,7 @@ export default function ProgressCreateForm({
   return (
     <div className={"flex items-center justify-center"}>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 text-black">
-        <div className="rounded p-2 bg-[#FEF7FF]">{formMatchPercent}</div>
+        <div className="rounded p-2 bg-[#FEF7FF]">{`${formMatchPercent}%`}</div>
         <input
           name="exerciseName"
           type="text"
